@@ -1,0 +1,33 @@
+name: IngotVanillaTweaker
+authors:
+- Budderman18
+description: "A plugin focused on optionally fixing or changing a variety of vanilla bugs/features"
+main: com.budderman18.IngotVanillaTweaker.Main
+version: 1.0
+api-version: 1.13
+commands:
+    IngotVanillaTweaker:
+        description: "Manage admin commands for IngotVanillaTweaker"
+        default: op
+        usage: "/ingotvanillatweaker reload"
+        aliases:
+        - ivt
+permissions:
+    ingotvt.ivt:
+        description: "Allow players to use the base /ingotvanillatweaker command"
+        default: op
+    ingotvt.ivt.reload:
+        description: "Allow players to use the /ingotvanillatweaker reload command"
+        default: op
+    ingotvt.xpdeathdropfix.allow:
+        description: "Allow players to have the modified xp calculations on death"
+        default: op
+    ingotvt.tooexpensivefix.allow:
+        description: "Allow players to have the modified anvil calculations"
+        default: op
+    ingotvt.silkspawners.allow:
+        description: "Allow players to obtain spawners with a silk touch pickaxe"
+        default: op
+    ingotvt.silkamethyst.allow:
+        description: "Allow players to obtain budding amethyst with a silk touch pickaxe"
+        default: op
