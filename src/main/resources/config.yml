@@ -1,0 +1,10 @@
+#don't touch this
+version: 1.0
+#allow xpdeathdrop features
+enable-xpdeathdropfix: true
+#allow tooexpensivefix features
+enable-tooexpensivefix: true
+#allow silkspawners
+enable-silkspawners: true
+#allow silkamethyst
+enable-silkamethyst: true
