@@ -3,7 +3,7 @@ authors:
 - Budderman18
 description: "A plugin focused on optionally fixing or changing a variety of vanilla bugs/features"
 main: com.budderman18.IngotVanillaTweaker.Main
-version: 1.0
+version: 1.0.2
 api-version: 1.13
 commands:
     IngotVanillaTweaker:
