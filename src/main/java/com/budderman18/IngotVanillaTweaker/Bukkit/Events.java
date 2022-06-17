@@ -57,7 +57,6 @@ public class Events implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         //set new value
         int xp = (event.getEntity().getTotalExperience()/2);
-        Bukkit.broadcastMessage(Boolean.toString(config.getBoolean("enable-xpdeathdropfix")));
         if (event.getEntity().hasPermission("ingotvt.xpdeathdropfix.allow") && config.getBoolean("enable-xpdeathdropfix") == true && event.getEntity().getWorld().getGameRuleValue(GameRule.KEEP_INVENTORY) == false) {
             event.setDroppedExp(xp);
         }
