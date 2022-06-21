@@ -93,33 +93,10 @@ public class Main extends JavaPlugin implements Listener {
         createFiles();
         FileConfiguration language = FileManager.getCustomData(plugin, "language", ROOT);
         //language variables
-        String prefixMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Prefix-Message")); 
-        String unsupportedVersionAMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Unsupported-VersionA-Message")); 
-        String unsupportedVersionBMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Unsupported-VersionB-Message")); 
-        String unsupportedVersionCMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Unsupported-VersionC-Message")); 
-        String unsecureServerAMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Unsecure-ServerA-Message")); 
-        String unsecureServerBMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Unsecure-ServerB-Message")); 
-        String unsecureServerCMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Unsecure-ServerC-Message")); 
-        String pluginEnabledMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Plugin-Enabled-Message")); //check for correct version
-        if (!(Bukkit.getVersion().contains("1.19"))) {
-            sender.sendMessage(prefixMessage + unsupportedVersionAMessage);
-            sender.sendMessage(prefixMessage + unsupportedVersionBMessage);
-            sender.sendMessage(prefixMessage + unsupportedVersionCMessage);  
-        }
-        //check for online mode
-        if (!(getServer().getOnlineMode())) {
-            sender.sendMessage(prefixMessage + unsecureServerAMessage);
-            sender.sendMessage(prefixMessage + unsecureServerBMessage);
-            sender.sendMessage(prefixMessage + unsecureServerCMessage);
-            getServer().getPluginManager().disablePlugin(this);
-        }
         //commands
         this.getCommand("IngotVanillaTweaker").setExecutor(new IngotVanillaTweaker());
         //events
         getServer().getPluginManager().registerEvents(new Events(),this);
-        //enable plugin
-        getServer().getPluginManager().enablePlugin(this);
-        sender.sendMessage(prefixMessage + pluginEnabledMessage);
     }
     /*
     *
@@ -130,11 +107,5 @@ public class Main extends JavaPlugin implements Listener {
     public void onDisable() {
         //files
         FileConfiguration language = FileManager.getCustomData(plugin, "language", ROOT);
-        //messages
-        String prefixMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Prefix-Message")); 
-        String pluginDisabledMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Plugin-Disabled-Message"));
-        //disables plugin
-        getServer().getPluginManager().disablePlugin(this);
-        sender.sendMessage(prefixMessage + pluginDisabledMessage);
     }
 }
