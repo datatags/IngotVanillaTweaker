@@ -2,8 +2,10 @@
 #Note: changing the command names here doesnt actually change them
 # Example: Changing "/ivt reload" to "ingotvt load" doesn't change the command. You still need to use "/ivt reload"
 Prefix-Message: "&f[&dIngotVanillaTweaker&f] "
+Outdated-Config-Message: "&4YOUR CONFIG IS OUTDATED!!! &bupdating..."
 No-Permission-Message: "&bYou do not have permission to use that!"
 Command-Reloaded-Message: "&bIngotVanillaTweaker by &6Budderman18 &bhas been reloaded!"
+Command-Version-Message: "&bYou are running version &a"
 Unsupported-VersionA-Message: "&4IngotVanillaTweaker does not support your version!"
 Unsupported-VersionB-Message: "&aOnly 1.19 is supported"
 Unsupported-VersionC-Message: "&aThis plugin will likely not work and you will get no help for issues"
