@@ -100,7 +100,7 @@ public class Main extends JavaPlugin implements Listener {
         if (config.getString("version").contains("1.0")) {
             FileManager.updateConfig();
             //set and save file
-            language.set("Outdated-Conifg-Message", outdatedConfigMessage);
+            language.set("Outdated-Conifg-Message", ChatColor.translateAlternateColorCodes('&', "&4YOUR CONFIG IS OUTDATED!!! &bupdating..."));
             language.set("Command-Version-Message", ChatColor.translateAlternateColorCodes('&', "&bYou are running version &a"));
             try {
                 language.save(languagef);
