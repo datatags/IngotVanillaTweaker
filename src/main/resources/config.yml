@@ -4,6 +4,11 @@ version: 1.0
 enable-xpdeathdropfix: true
 #allow tooexpensivefix features
 enable-tooexpensivefix: true
+#change how enchant cost will be displayed
+#CHAT = inside chat
+#ACTION_BAR = on the action bar
+#TITLE = as a title
+tooexpensivefix-outputtype: CHAT
 #allow silkspawners
 enable-silkspawners: true
 #allow silkamethyst
