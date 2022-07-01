@@ -17,8 +17,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
+ * 
  * This class enables and disables the plugin
  * It also imports commands and handles events
+ * 
  */
 public class Main extends JavaPlugin implements Listener {
     //plugin
@@ -27,20 +29,20 @@ public class Main extends JavaPlugin implements Listener {
     private static final String ROOT = "";
     private final ConsoleCommandSender sender = getServer().getConsoleSender();
     /**
-    * 
-    * This method obtains the plugin info
-    * 
-    * @return 
-    */
+     *
+     * This method obtains the plugin info.
+     *
+     * @return
+     */
     public static Main getInstance() {
         return plugin;
     }
     /**
-    *
-    * This method creates files if needed. 
-    * Only needed if file is missing (first usage). 
-    *
-    */
+     *
+     * This method creates files if needed. Only needed if file is missing
+     * (first usage).
+     *
+     */
     private void createFiles() {
         //config file
         File configf = new File(getDataFolder(), "config.yml");
@@ -75,22 +77,24 @@ public class Main extends JavaPlugin implements Listener {
             }
         }
     } 
-    /*
-    *
-    * Enables the plugin.
-    * Checks if MC version isn't the latest.
-    * If its not, warn the player about lacking support
-    * Checks if server is running offline mode
-    * If it is, disable the plugin
-    * Also loads death event
-    *
-    */
+    /**
+     *
+     * Enables the plugin. 
+     * Checks if MC version isn't the latest. 
+     * If its not, warn the player about lacking support.
+     * Checks if server is running offline mode.
+     * If it is, disable the plugin. 
+     * Also loads events
+     *
+     */
     @Override
     public void onEnable() {
         //set plugin
         plugin = this;
         //files
         createFiles();
+        File languagef = new File(this.getDataFolder(), "language.yml");
+        FileConfiguration config = FileManager.getCustomData(plugin, "config", ROOT);
         FileConfiguration language = FileManager.getCustomData(plugin, "language", ROOT);
         //language variables
         String prefixMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Prefix-Message")); 
@@ -101,6 +105,25 @@ public class Main extends JavaPlugin implements Listener {
         String unsecureServerBMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Unsecure-ServerB-Message")); 
         String unsecureServerCMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Unsecure-ServerC-Message")); 
         String pluginEnabledMessage = ChatColor.translateAlternateColorCodes('&', language.getString("Plugin-Enabled-Message")); //check for correct version
+        String outdatedConfigMessage = ChatColor.translateAlternateColorCodes('&', "&4YOUR CONFIG IS OUTDATED!!! &bupdating...");
+        //update config
+        if (config.getString("version").contains("1.0")) {
+            //tell console
+            sender.sendMessage(prefixMessage + outdatedConfigMessage);
+            FileManager.updateConfig();
+            //set and save file
+            language.set("Outdated-Conifg-Message", outdatedConfigMessage);
+            language.set("Command-Version-Message", ChatColor.translateAlternateColorCodes('&', "&bYou are running version &a"));
+            try {
+                language.save(languagef);
+            } 
+            catch (IOException ex) {
+                if (config.getBoolean("enable-debug-mode") == true) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, "COULD NOT SAVE LANGUAGE.YML!!!");
+                }
+            }
+        }
+        //check for correct version
         if (!(Bukkit.getVersion().contains("1.19"))) {
             sender.sendMessage(prefixMessage + unsupportedVersionAMessage);
             sender.sendMessage(prefixMessage + unsupportedVersionBMessage);
@@ -121,11 +144,11 @@ public class Main extends JavaPlugin implements Listener {
         getServer().getPluginManager().enablePlugin(this);
         sender.sendMessage(prefixMessage + pluginEnabledMessage);
     }
-    /*
-    *
-    * This method disables the plugin
-    *
-    */
+    /**
+     *
+     * This method disables the plugin
+     *
+     */
     @Override
     public void onDisable() {
         //files
